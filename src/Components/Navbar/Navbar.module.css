@@ -1,0 +1,19 @@
+.link{
+    text-decoration: none;
+    color:#fff;
+    font-weight: bold;
+    margin-left: 25px;
+    font-size: 25px;
+}
+
+.login_btn{
+    padding: 10px 40px; 
+    background-color: #fff;
+    color: red;
+    font-weight: bold;
+    font-size: 25px;
+    border:none;
+    margin-left: 25px;
+}
+
+
