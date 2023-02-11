@@ -5,10 +5,10 @@
 
 a{
     text-decoration: none;
-    color: #ffffff;
+    color: white !important;
     font-weight: bolder;
 }
 
 a:hover{
-    color:rgb(223, 1, 1);
+    color:rgb(223, 1, 1) !important;
 }
