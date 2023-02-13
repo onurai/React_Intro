@@ -15,11 +15,11 @@ const UseEffect = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
 
-
+    
     
     useEffect(() => {
         const getUsers  = async () => {
-            const response  = await axios.get('https://randomuser.me/api/?results=500')
+            const response  = await axios.get('https://randomuser.me/api/?results=10')
             console.log(response);
 
             setUsers(response.data.results);
@@ -29,7 +29,7 @@ const UseEffect = () => {
         getUsers();
     }, [])
 
-    
+    // const availableUser= users.filter(users.id.value != null && users.id.value !=null)
 
   return (
     <div>
@@ -55,14 +55,24 @@ const UseEffect = () => {
             : users.map(user => {
                 return(
                   <div key={user.id.value}>
-                    <p>{user.name.title}. {user.name.first} {user.name.last}</p>
-                    <p>{user.email}//{user.gender}//{user.location.city}, {user.location.city}</p>
-                    <p>{user.login.username}//{user.login.password}</p>
+                    <div className="container">
+                      <div className="row">
+                        <div className="col-3">
+                          <div className="card">
+                            <img src={user.picture.medium} style={{objectFit:"cover"}} className="card-img-top" alt="..." />
+                            <div claclassNamess="card-body">
+                              <h5 className="card-title">{user.name.title}. {user.name.first} {user.name.last}</h5>
+                              <p className="card-text">{user.email}</p>
+                              <p>{user.location.city}, {user.location.country}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )
             })
         }
-
     </div>
   )
 }
