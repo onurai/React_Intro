@@ -15,12 +15,11 @@ const UseEffect = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    
-    
+
     useEffect(() => {
         const getUsers  = async () => {
             const response  = await axios.get('https://randomuser.me/api/?results=10')
-            console.log(response);
+            
 
             setUsers(response.data.results);
             setLoading(false);
@@ -29,7 +28,8 @@ const UseEffect = () => {
         getUsers();
     }, [])
 
-    // const availableUser= users.filter(users.id.value != null && users.id.value !=null)
+    const availableUser= users.filter((user)=>user.id.value != null && user.id.name != "");
+    console.log(availableUser);
 
   return (
     <div>
@@ -39,39 +39,37 @@ const UseEffect = () => {
             loading ? 
             <ChakraProvider>
               <Box>
-              <Spinner
-                  thickness='4px'
-                  speed='0.65s'
-                  emptyColor='gray.200'
-                  color='blue.500'
-                  size='xl'
-                  position="absolute"
-                  top='300%'
-                  left='50%'
-                  transform='translate(-50%, -50%)'
-              />
+                <Spinner
+                    thickness='4px'
+                    speed='0.65s'
+                    emptyColor='gray.200'
+                    color='blue.500'
+                    size='xl'
+                    position="absolute"
+                    top='300%'
+                    left='50%'
+                    transform='translate(-50%, -50%)'
+                />
               </Box>
             </ChakraProvider>
-            : users.map(user => {
-                return(
-                  <div key={user.id.value}>
-                    <div className="container">
-                      <div className="row">
-                        <div className="col-3">
-                          <div className="card">
-                            <img src={user.picture.medium} style={{objectFit:"cover"}} className="card-img-top" alt="..." />
-                            <div claclassNamess="card-body">
-                              <h5 className="card-title">{user.name.title}. {user.name.first} {user.name.last}</h5>
-                              <p className="card-text">{user.email}</p>
-                              <p>{user.location.city}, {user.location.country}</p>
-                            </div>
-                          </div>
+            : 
+              <div className="container">
+                <div className="row justify-content-between" >
+                  {availableUser.map(user => (
+                    <div className="col-lg-3" key={user.id.value}>
+                      <div className="card text-center">
+                        <img src={user.picture.medium} style={{objectFit:"cover"}} className="card-img-top" alt="..." />
+                        <div className="card-body ">
+                          <h5 className="card-title my-lg-2">{user.name.title}. {user.name.first} {user.name.last}</h5>
+                          <p className="card-text">{user.email}</p>
+                          <p>{user.location.city}, {user.location.country}</p>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                )
-            })
+                    </div>  
+                  )
+                  )}
+                </div>
+              </div>
         }
     </div>
   )
