@@ -54,9 +54,9 @@ const UseEffect = () => {
             </ChakraProvider>
             : 
               <div className="container">
-                <div className="row justify-content-between" >
+                <div className="row justify-content-evenly align-items-center" >
                   {availableUser.map(user => (
-                    <div className="col-lg-3" key={user.id.value}>
+                    <div className="col-lg-3 my-2" key={user.id.value}>
                       <div className="card text-center">
                         <img src={user.picture.medium} style={{objectFit:"cover"}} className="card-img-top" alt="..." />
                         <div className="card-body ">
